@@ -2,6 +2,6 @@
 
 @section('content')
 
-<h2> Admin dashboard  {{auth()->user()->name}}</h2>
+<h2>Welcome {{auth()->user()->name}} </h2>
     
 @endsection

@@ -30,14 +30,22 @@ class UserController extends Controller
 
     public function login(Request $request) {
         $data = $request->validate([
-            'login' => 'required',
+            'email' => 'required',
             'password'=>'required'
         ]);
 
-        if(auth()->attempt(['name'=>$data['name'], 'password'=>$data['password']])){
+        if(auth()->attempt(['email'=>$data['email'], 'password'=>$data['password']])){
             $request->session()->regenerate();
         }
 
         return redirect('/');
+    }
+
+    public function adminDashboard(){
+        return view('admin/adminDashboard');
+    }
+
+    public function dashboard(){
+        return view('dashboard');
     }
 }

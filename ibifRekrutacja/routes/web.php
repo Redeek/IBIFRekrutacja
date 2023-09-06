@@ -26,6 +26,13 @@ Route::get('/register', function () {
     return view('register');
 });
 
+
+
+Route::get('/admin/dashboard', [UserController::class, 'adminDashboard'])->name('admin.dashboard')->middleware('checkUserType');
+
+Route::get('/dashboard', [UserController::class, 'Dashboard'])->name('user.dashboard')->middleware('checkUserType');
+
+
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 
