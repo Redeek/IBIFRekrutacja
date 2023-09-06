@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmailController;
+use App\Http\Controllers\LocalizationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,10 @@ Route::get('/admin/dashboard', [UserController::class, 'adminDashboard'])->name(
 
 Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard')->middleware('checkUserType');
 Route::get('/wysiwyg', [UserController::class, 'wysiwyg'])->name('user.wysiwyg');
-Route::get('/contact', [UserController::class, 'contact'])->name('user.contact');
+
+
+Route::get('/contact', [EmailController::class, 'contact'])->name('contact');
+Route::post('/contact', [EmailController::class, 'sendEmail'])->name('send.email');
 
 
 

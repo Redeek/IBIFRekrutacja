@@ -53,7 +53,4 @@ class UserController extends Controller
         return view('wysiwyg');
     }
 
-    public function contact(){
-        return view('contact');
-    }
 }
