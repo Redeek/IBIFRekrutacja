@@ -15,29 +15,50 @@
         <div>
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Strona główna</a>
+                    <a class="nav-link" href="/">{{__('messages.home')}}</a>
                 </li>
                 @auth
-                @if (auth()->user()->usertype == 'admin')
+                    @if (auth()->user()->usertype == 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/dashboard">{{__('messages.dashboard')}}</a>
+                        </li>
+                    @else
+                        <a class="nav-link" href="/dashboard">{{__('messages.dashboard')}}</a>
+                    @endif
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+                        <a class="nav-link" href="/wysiwyg">WYSIWYG</a>
                     </li>
-                @else
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
-                @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">{{__('messages.contact')}}</a>
+                    </li>
                  <li>
                     <form action="/logout" method="POST">
                         @csrf
-                        <button href="/logout"> Log out </button>
+                        <button href="/logout">{{__('messages.logout')}} </button>
                     </form>
                  </li> 
+
+                    @if (auth()->user()->usertype == 'user')
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{__('messages.chooseLanguage')}}</a>
+                        <ul class="dropdown-menu">
+                            <li> <a class="dropdown-item" href="{{ route('setlocale', 'en') }}">English</a> </li>
+                            <li> <a class="dropdown-item" href="{{ route('setlocale', 'pl') }}">Polski</a> </li>
+                        </ul>
+                        </a>
+                    </li>
+                    
+                    @endif
+
                  @else
                  <li class="nav-item">
-                    <a href="/register" class="nav-link" > Rejestracja </a>
+                    <a href="/register" class="nav-link" > Register </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/login" class="nav-link" > Zaloguj </a>
-                </li>                       
+                    <a href="/login" class="nav-link" > Login </a>
+                </li>   
+                
+                
                 @endauth
             </ul>
         </div>

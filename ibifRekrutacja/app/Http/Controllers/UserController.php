@@ -48,4 +48,12 @@ class UserController extends Controller
     public function dashboard(){
         return view('dashboard');
     }
+
+    public function wysiwyg(){
+        return view('wysiwyg');
+    }
+
+    public function contact(){
+        return view('contact');
+    }
 }

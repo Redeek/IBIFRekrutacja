@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,10 +31,16 @@ Route::get('/register', function () {
 
 Route::get('/admin/dashboard', [UserController::class, 'adminDashboard'])->name('admin.dashboard')->middleware('checkUserType');
 
-Route::get('/dashboard', [UserController::class, 'Dashboard'])->name('user.dashboard')->middleware('checkUserType');
+Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard')->middleware('checkUserType');
+Route::get('/wysiwyg', [UserController::class, 'wysiwyg'])->name('user.wysiwyg');
+Route::get('/contact', [UserController::class, 'contact'])->name('user.contact');
+
 
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 
 Route::post('/logout', [UserController::class, 'logout']);
+
+
+Route::get('setlocale/{locale}', [LocalizationController::class, 'setLocale'])->name('setlocale');
